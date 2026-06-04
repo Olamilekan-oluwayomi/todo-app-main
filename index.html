@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+
+    <title>Frontend Mentor | Todo app</title>
+  </head>
+  <body>
+    <main class="todo-list">
+      <header class="todo-list__header">
+        <h1 class="todo-list__heading">TODO</h1>
+
+        <button type="button" aria-label="Switch to dark theme">
+          <img src="images/icon-moon.svg" alt="moon icon" />
+        </button>
+      </header>
+
+      <form class="todo-list__input">
+        <span
+          class="checkbox"
+          role="checkbox"
+          aria-checked="false"
+          tabindex="0"
+        ></span>
+        <label for="todo-input" class="visually-hidden"
+          >Create a new todo</label
+        >
+        <input type="text" placeholder="create a new todo..." id="todo-input" />
+      </form>
+
+      <ul class="todo-list__lists">
+        <li class="todo-list__list">
+          <span
+            class="checkbox"
+            role="checkbox"
+            aria-checked="false"
+            aria-labelledby="todo-text-1"
+            tabindex="0"
+          ></span>
+          <span class="todo-text" id="todo-text-1"></span>
+
+          <button type="button" aria-label="delete an item">
+            <img src="images/icon-cross.svg" alt="Delete icon" />
+          </button>
+        </li>
+
+        <li class="todo-list__control mobile">
+          <span class="todo-list__count"></span>
+          <button type="button" class="todo-list__clear-btn">
+            clear completed
+          </button>
+        </li>
+        <li class="todo-list__control desktop">
+          <span class="todo-list__count"></span>
+          <nav>
+            <button type="button" class="todo-list__button">All</button>
+            <button type="button" class="todo-list__button">Active</button>
+            <button type="button" class="todo-list__button">completed</button>
+          </nav>
+          <button type="button" class="todo-list__clear-btn">
+            clear completed
+          </button>
+        </li>
+      </ul>
+
+      <nav class="mobile">
+        <button type="button" class="todo-list__button">All</button>
+        <button type="button" class="todo-list__button">Active</button>
+        <button type="button" class="todo-list__button">completed</button>
+      </nav>
+
+      <p class="todo-list__instruction">drag and drop to reorder list</p>
+    </main>
+  </body>
+</html>
