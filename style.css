@@ -1,0 +1,433 @@
+:root {
+  /* =====================================
+       1. GLOBAL CONSTANTS
+       ================================== */
+  --color-primary: hsl(220, 98%, 61%);
+  --check-gradient: linear-gradient(
+    135deg,
+    hsl(192, 100%, 67%),
+    hsl(280, 87%, 65%)
+  );
+
+  /* =====================================
+       2. FUNCTIONAL TOKENS (Default Light Theme)
+       ================================== */
+  --bg-app: hsl(0, 0%, 98%);
+  --bg-card: hsl(0, 0%, 100%);
+  --border-color: hsl(233, 11%, 84%);
+
+  --text-main: hsl(235, 19%, 35%);
+  --text-muted: hsl(236, 9%, 61%);
+  --text-placeholder: hsl(236, 9%, 61%);
+
+  --box-shadow: 0 35px 50px -15px rgba(194, 195, 214, 0.5);
+  --bg-image: url("images/bg-mobile-light.jpg");
+
+  /* Typography */
+  --font-family: "Josefin Sans", sans-serif;
+  --font-size-body: 1.8rem;
+  --font-size-detail: 1.4rem;
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+}
+
+/* ======================================
+     3. THEME OVERRIDES (Explicit Dark Theme)
+     ==================================== */
+body.dark {
+  --bg-app: hsl(235, 21%, 11%);
+  --bg-card: hsl(235, 24%, 19%);
+  --border-color: hsl(237, 14%, 26%);
+
+  --text-main: hsl(234, 39%, 85%);
+  --text-muted: hsl(235, 16%, 43%);
+  --text-placeholder: hsl(234, 11%, 52%);
+
+  --box-shadow: 0 35px 50px -15px rgba(0, 0, 0, 0.5);
+  --bg-image: url("images/bg-mobile-dark.jpg");
+}
+
+/* ======================================
+     4. GLOBAL RESET & BASE RULES
+     ==================================== */
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-body);
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  min-height: 100vh;
+
+  /* Smooth color transition when toggling themes */
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+/* Base interactive resets */
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font: inherit;
+  color: inherit;
+}
+
+input {
+  font: inherit;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+ul {
+  list-style: none;
+}
+
+body::after {
+  content: "";
+  background: var(--bg-image);
+  background-position: top center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: block;
+  height: 25rem;
+  width: 100%;
+  top: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+/* Mobile utilities baseline */
+li.desktop-hidden {
+  display: none;
+}
+
+nav.mobile {
+  display: flex;
+}
+
+/* ==========================================
+     5. MAIN APPLICATION CONTAINER
+     ========================================== */
+.todo-list {
+  width: 100%;
+  max-width: 54rem;
+  padding-inline: var(--spacing-xl);
+  margin-top: 4.8rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================
+     6. HEADER COMPONENT
+     ========================================== */
+.todo-list__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.todo-list__title {
+  color: #ffffff;
+  font-size: 3rem;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 1.5rem;
+  text-transform: uppercase;
+}
+
+.todo-list__theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.todo-list__theme-toggle:active {
+  transform: scale(0.9);
+}
+
+/* ==========================================
+     7. INPUT CREATION GROUP
+     ========================================== */
+.todo-list__input-group {
+  display: flex;
+  align-items: center;
+  background-color: var(--bg-card);
+  box-shadow: var(--box-shadow);
+  border-radius: 0.5rem;
+  padding: 1.8rem 2rem;
+  margin-bottom: var(--spacing-xl);
+
+  transition:
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* Decorative empty circle inside the input bar */
+.todo-list__input-group .todo-list__circle {
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  margin-right: 1.6rem;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+/* The actual text entry input field */
+.todo-list__input-group input {
+  flex: 1;
+  font-size: var(--font-size-body);
+  color: var(--text-main);
+  background: transparent;
+  width: 100%;
+}
+
+.todo-list__input-group input::placeholder {
+  color: var(--text-placeholder);
+  opacity: 1;
+}
+
+.visually-hidden {
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  position: absolute;
+}
+
+/* ==========================================
+     8. MAIN TODO LIST CARD CONTAINER
+     ========================================== */
+.todo-list__lists {
+  background-color: var(--bg-card);
+  box-shadow: var(--box-shadow);
+  border-radius: 0.5rem;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: var(--spacing-xl);
+  transition:
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* ==========================================
+     9. INDIVIDUAL TASK ITEM ROW & SUB-COMPONENTS
+     ========================================== */
+.todo-list__item {
+  display: flex;
+  align-items: center;
+  padding: 1.8rem 2rem;
+  background-color: var(--bg-card);
+  border-bottom: 1px solid var(--border-color);
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+/* Checkbox container alignment inside rows */
+.todo-list__item .todo-list__checkbox-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  margin-right: 1.6rem;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+/* Task item text typography constraints */
+.todo-list__item .todo-list__text {
+  flex: 1;
+  font-size: var(--font-size-body);
+  color: var(--text-main);
+  word-break: break-word;
+  cursor: pointer;
+  transition:
+    color 0.3s ease,
+    opacity 0.3s ease;
+}
+
+/* The delete/cross button on the far right */
+.todo-list__item .todo-list__delete-btn {
+  opacity: 1; /* Fully visible on mobile devices for ease of physical touch */
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ==========================================
+     10. CUSTOM CHECKBOX MECHANICS & INTERACTIONS
+     ========================================== */
+
+/* State: Checked (Triggered via JS attribute modifications) */
+.todo-list__checkbox-container[aria-checked="true"],
+.todo-list__circle[aria-checked="true"] {
+  background: var(--check-gradient) !important;
+  border-color: transparent !important;
+
+  /* Positions the check icon asset perfectly centered */
+  background-image: url("images/icon-check.svg") !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+}
+
+/* Hover State: Fluid multi-color gradient borders */
+.todo-list__checkbox-container:hover,
+.todo-list__circle:hover {
+  border-color: transparent;
+  background:
+    linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
+    var(--check-gradient) border-box;
+  border: 1px solid transparent;
+}
+
+/* Task Completed Text Modifier State */
+.todo-list__text--completed {
+  color: var(--text-muted) !important;
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+/* ==========================================
+     11. MOBILE CONTROLS BAR & NAVIGATION CARD
+     ========================================== */
+.todo-list__control {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-placeholder);
+  font-size: var(--font-size-detail);
+  padding: 1.6rem 2rem;
+  border-bottom: none; /* Prevents control rows from drawing lines underneath */
+}
+
+.todo-list__clear-btn {
+  font-size: var(--font-size-detail);
+  color: var(--text-muted);
+  transition: color 0.2s ease;
+}
+
+.todo-list__clear-btn:hover {
+  color: var(--text-main);
+}
+
+/* Standalone navigation block on smartphones */
+nav.mobile {
+  display: flex;
+  justify-content: center;
+  gap: 1.8rem;
+  background-color: var(--bg-card);
+  box-shadow: var(--box-shadow);
+  border-radius: 0.5rem;
+  padding: 1.5rem 2rem;
+  margin-bottom: var(--spacing-xl);
+  transition:
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.todo-list__button {
+  font-size: var(--font-size-detail);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-muted);
+  transition: color 0.2s ease;
+}
+
+.todo-list__button:hover {
+  color: var(--text-main);
+}
+
+/* Universal active layout link helper */
+.todo-list__button--active {
+  color: var(--color-primary) !important;
+}
+
+/* ==========================================
+     12. HELP INSTRUCTION TEXT
+     ========================================== */
+.todo-list__instruction {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: var(--font-size-detail);
+  margin-block: 3rem;
+}
+
+/* ==========================================
+     13. DESKTOP RESPONSIVE BREAKPOINT
+     ========================================== */
+@media (min-width: 768px) {
+  :root {
+    --bg-image: url("images/bg-desktop-light.jpg");
+  }
+
+  body.dark {
+    --bg-image: url("images/bg-desktop-dark.jpg");
+  }
+
+  body::after {
+    height: 30rem; /* Extends depth on spacious desktop displays */
+  }
+
+  /* 1. Show the inline desktop row, format elements cleanly apart */
+  li.desktop-hidden {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* Configure nested interactive nav container on desktop spacing models */
+  li.desktop-hidden nav {
+    display: flex;
+    gap: 1.8rem;
+  }
+
+  /* 2. Hide all mobile-only layout segments completely */
+  li.mobile,
+  nav.mobile {
+    display: none !important;
+  }
+
+  /* 3. Desktop Hover Enhancement: Hide clear cross icons until row hover */
+  .todo-list__item .todo-list__delete-btn {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .todo-list__item:hover .todo-list__delete-btn {
+    opacity: 1;
+  }
+}

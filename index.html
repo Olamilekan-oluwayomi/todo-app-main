@@ -11,20 +11,33 @@
     />
 
     <title>Frontend Mentor | Todo app</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <main class="todo-list">
       <header class="todo-list__header">
-        <h1 class="todo-list__heading">TODO</h1>
+        <h1 class="todo-list__title">TODO</h1>
 
-        <button type="button" aria-label="Switch to dark theme">
+        <button
+          type="button"
+          class="todo-list__theme-toggle"
+          aria-label="Switch to dark theme"
+        >
           <img src="images/icon-moon.svg" alt="moon icon" />
         </button>
       </header>
 
-      <form class="todo-list__input">
+      <form class="todo-list__input-group">
         <span
-          class="checkbox"
+          class="todo-list__circle"
           role="checkbox"
           aria-checked="false"
           tabindex="0"
@@ -36,29 +49,33 @@
       </form>
 
       <ul class="todo-list__lists">
-        <li class="todo-list__list">
+        <li class="todo-list__item">
           <span
-            class="checkbox"
+            class="todo-list__checkbox-container"
             role="checkbox"
             aria-checked="false"
             aria-labelledby="todo-text-1"
             tabindex="0"
           ></span>
-          <span class="todo-text" id="todo-text-1"></span>
+          <span class="todo-list__text" id="todo-text-1">____</span>
 
-          <button type="button" aria-label="delete an item">
+          <button
+            type="button"
+            class="todo-list__delete-btn"
+            aria-label="delete an item"
+          >
             <img src="images/icon-cross.svg" alt="Delete icon" />
           </button>
         </li>
 
-        <li class="todo-list__control mobile">
-          <span class="todo-list__count"></span>
+        <li class="todo-list__item todo-list__control mobile">
+          <span class="todo-list__count">... items left</span>
           <button type="button" class="todo-list__clear-btn">
             clear completed
           </button>
         </li>
-        <li class="todo-list__control desktop">
-          <span class="todo-list__count"></span>
+        <li class="todo-list__item todo-list__control desktop-hidden">
+          <span class="todo-list__count">... items left</span>
           <nav>
             <button type="button" class="todo-list__button">All</button>
             <button type="button" class="todo-list__button">Active</button>
