@@ -241,11 +241,10 @@ body::after {
 
 .todo-list__checkbox-container[aria-checked="true"],
 .todo-list__circle[aria-checked="true"] {
-  background: var(--check-gradient) !important;
   border-color: transparent !important;
-  background-image: url("images/icon-check.svg") !important;
-  background-repeat: no-repeat !important;
-  background-position: center !important;
+  background:
+    url("images/icon-check.svg") center no-repeat,
+    var(--check-gradient);
 }
 
 .todo-list__checkbox-container:hover,
