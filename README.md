@@ -1,6 +1,6 @@
 # Frontend Mentor - Todo app solution
 
-This is a solution to the [Todo app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/todo-app-Su1_KokOW). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
+This is a solution to the [Todo app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/todo-app-Su1_KokOW). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
 ## Table of contents
 
@@ -32,11 +32,6 @@ Users should be able to:
 ### Screenshot
 
 ![Todo App Preview](./preview.jpg)
-
-### Links
-
-- Solution URL: [Frontend Mentor Solution](https://www.frontendmentor.io/challenges/todo-app-Su1_KokOW)
-- Live Site URL: [Live Site URL](https://github.com/yourusername/todo-app)
 
 ## My process
 
